@@ -65,8 +65,8 @@
   }
   .wordmark {
     font-family: var(--serif);
-    font-weight: 500;
-    font-size: 19px;
+    font-weight: 600;
+    font-size: 22px;
     letter-spacing: -0.01em;
   }
   .nav-cta {
@@ -99,6 +99,14 @@
     position: relative;
     z-index: 1;
     text-align: center;
+  }
+  .hero-brand {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(22px, 3vw, 28px);
+    letter-spacing: -0.005em;
+    color: #fff;
+    margin: 0 0 22px;
   }
   .eyebrow {
     display: inline-block;
@@ -383,17 +391,18 @@
 <nav class="top">
   <div class="wrap">
     <span class="wordmark">fresh air</span>
-    <a class="nav-cta" href="mailto:juanjclark@gmail.com?subject=Fresh%20Air">Get in touch</a>
+    <a class="nav-cta" href="signup.html">Request a demo</a>
   </div>
 </nav>
 
 <header class="hero">
   <div class="wrap hero-inner">
+    <p class="hero-brand">fresh air</p>
     <span class="eyebrow">Currently in private beta</span>
     <h1 class="headline">A real reason<br><em>to step outside.</em></h1>
     <p class="sub">Fresh Air finds your best moment to go outside each day — using actual weather, UV, and air quality data, not a guess — then turns it into a one-photo habit worth keeping.</p>
     <div class="hero-actions">
-      <a class="btn-ghost" href="mailto:juanjclark@gmail.com?subject=Fresh%20Air%20—%20early%20access">Request early access</a>
+      <a class="btn-ghost" href="signup.html">Request a demo</a>
       <a class="btn-primary" href="#how">See how it works</a>
     </div>
 
@@ -482,9 +491,9 @@
   <div class="wrap reveal">
     <div class="status-pill"><span class="dot"></span> Private beta — iOS, via Expo</div>
     <h2>We're letting people in slowly.</h2>
-    <p class="lede">Fresh Air is being built and tested in the open right now. If you'd like early access, or you're an investor who wants to see it running, reach out directly.</p>
+    <p class="lede">Fresh Air is being built and tested in the open right now. If you'd like early access, or you're an investor who wants to see it running, request a demo below.</p>
     <div class="cta-row">
-      <a class="btn-primary" style="background:var(--accent); color:var(--accent-ink); border-color:transparent;" href="mailto:juanjclark@gmail.com?subject=Fresh%20Air">juanjclark@gmail.com</a>
+      <a class="btn-primary" style="background:var(--accent); color:var(--accent-ink); border-color:transparent;" href="signup.html">Request a demo</a>
     </div>
   </div>
 </section>
@@ -493,7 +502,7 @@
   <div class="wrap">
     <span class="fmark">fresh air</span>
     <div class="flinks">
-      <a href="mailto:juanjclark@gmail.com">Contact</a>
+      <a href="signup.html">Request a demo</a>
       <span style="color:var(--ink-faint)">© <span id="year"></span> Fresh Air</span>
     </div>
   </div>
