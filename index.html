@@ -35,8 +35,11 @@
     font-family: var(--sans);
     -webkit-font-smoothing: antialiased;
     /* One continuous backdrop for the whole page below the hero, so
-       sections never cut between flat, unrelated blocks of color. */
-    background: linear-gradient(180deg, #0D1226 0%, #121A34 28%, #161F42 58%, #1B2650 100%);
+       sections never cut between flat, unrelated blocks of color.
+       Same construction as the hero's gradient (a smooth multi-stop
+       linear-gradient), staying inside the same dark navy family
+       instead of drifting toward a visibly different blue. */
+    background: linear-gradient(180deg, #0D1226 0%, #0F1530 32%, #121937 64%, #141C3C 100%);
   }
 
   ::selection { background: var(--accent); color: var(--accent-ink); }
@@ -246,16 +249,6 @@
     margin: 0;
   }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.in {
-    opacity: 1;
-    transform: none;
-  }
-
   /* ---------- our story ---------- */
   .story-body {
     max-width: 640px;
@@ -457,7 +450,6 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .reveal { opacity: 1; transform: none; transition: none; }
     ol.steps li:hover { transform: none; }
   }
 </style>
@@ -502,7 +494,7 @@
 </header>
 
 <section class="tight">
-  <div class="wrap reveal">
+  <div class="wrap">
     <p class="kicker">Our story</p>
     <h2><span class="figure">90%</span> of our time is spent indoors.</h2>
     <p class="lede">It happens quietly, one ordinary day at a time, until being inside just starts to feel normal.</p>
@@ -526,7 +518,7 @@
 </section>
 
 <section id="how">
-  <div class="wrap reveal">
+  <div class="wrap">
     <p class="kicker">How it works</p>
     <h2>Four small things, every day.</h2>
     <p class="lede">No workouts, no goals, no step counts. Just a genuine daily habit of being outside, reflected honestly back at you.</p>
@@ -553,7 +545,7 @@
 </section>
 
 <section class="tight">
-  <div class="wrap reveal">
+  <div class="wrap">
     <p class="kicker">Along the way</p>
     <h2>More than a photo a day.</h2>
     <p class="lede">A few things that make the habit worth sticking with.</p>
@@ -594,7 +586,7 @@
 </section>
 
 <section class="cta">
-  <div class="wrap reveal">
+  <div class="wrap">
     <div class="status-pill"><span class="dot"></span> Private beta, iOS, via Expo</div>
     <h2>We're letting people in slowly.</h2>
     <p class="lede">Fresh Air is being built and tested in the open right now. If you'd like early access, or you're an investor who wants to see it running, request a demo below.</p>
@@ -616,21 +608,6 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  var els = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    els.forEach(function(el) { io.observe(el); });
-  } else {
-    els.forEach(function(el) { el.classList.add('in'); });
-  }
 </script>
 
 </body>
