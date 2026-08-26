@@ -3,20 +3,19 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Fresh Air — a real reason to go outside</title>
-<meta name="description" content="Fresh Air finds your best moment to step outside each day, using real weather, UV, and air quality data — then makes it a one-photo habit." />
+<title>Fresh Air: a real reason to go outside</title>
+<meta name="description" content="Fresh Air finds your best moment to step outside each day, using real weather and air quality data, then makes it a one-photo habit worth keeping." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --sky-top: #0D1226;
-    --sky-mid: #1B2547;
     --panel: #141A33;
     --panel-line: #262F52;
     --ink: #EDEFF8;
     --ink-dim: #9CA4C4;
-    --ink-faint: #6B729072;
+    --ink-faint: #6B7290;
     --accent: #F5A65B;
     --accent-ink: #2A1D0E;
     --dawn-1: #1E2A4A;
@@ -189,7 +188,7 @@
 
   /* ---------- sections ---------- */
   section { padding: 108px 0; }
-  section.tight { padding: 88px 0; }
+  section.tight { padding: 84px 0; }
 
   .kicker {
     font-size: 12.5px;
@@ -227,20 +226,77 @@
     transform: none;
   }
 
-  /* insight */
-  .insight-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 56px;
-    align-items: start;
+  /* ---------- our story ---------- */
+  .story {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
   }
-  .insight-quote {
+  .story-figure {
     font-family: var(--serif);
-    font-weight: 300;
+    font-weight: 600;
+    font-size: clamp(56px, 9vw, 92px);
+    line-height: 1;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .story-figure-label {
+    font-size: 13.5px;
+    color: var(--ink-dim);
+    margin: 0 0 44px;
+  }
+  .story p.body {
+    font-size: 18px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.88);
+    margin: 0 0 22px;
+    text-align: left;
+  }
+  .story p.slogan {
+    font-family: var(--serif);
     font-style: italic;
-    font-size: clamp(24px, 3vw, 32px);
-    line-height: 1.32;
+    font-weight: 400;
+    font-size: clamp(20px, 2.6vw, 25px);
     color: #fff;
+    margin: 34px 0 0;
+  }
+
+  /* ---------- stat band ---------- */
+  section.stat-band {
+    background: var(--panel);
+    border-top: 1px solid var(--panel-line);
+    border-bottom: 1px solid var(--panel-line);
+    padding: 56px 0;
+  }
+  .stat-band .wrap {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .stat-band .icon {
+    flex: none;
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    background: rgba(245,166,91,0.14);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .stat-band .icon svg { width: 22px; height: 22px; }
+  .stat-band p {
+    flex: 1;
+    min-width: 240px;
+    font-family: var(--serif);
+    font-size: clamp(18px, 2.4vw, 23px);
+    line-height: 1.4;
+    color: #fff;
+    margin: 0;
+  }
+  .stat-band .source {
+    display: block;
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink-dim);
+    margin-top: 6px;
   }
 
   /* steps */
@@ -251,16 +307,19 @@
     padding: 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--panel-line);
-    border: 1px solid var(--panel-line);
-    border-radius: 18px;
-    overflow: hidden;
+    gap: 18px;
   }
   ol.steps li {
     counter-increment: step;
     background: var(--panel);
-    padding: 30px 24px 34px;
+    border: 1px solid var(--panel-line);
+    border-radius: 18px;
+    padding: 28px 22px 30px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  ol.steps li:hover {
+    border-color: rgba(245,166,91,0.4);
+    transform: translateY(-3px);
   }
   ol.steps li::before {
     content: counter(step, decimal-leading-zero);
@@ -269,7 +328,7 @@
     font-size: 15px;
     color: var(--accent);
     letter-spacing: 0.06em;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
   }
   ol.steps h3 {
     font-family: var(--sans);
@@ -285,35 +344,35 @@
     margin: 0;
   }
 
-  /* difference cards */
-  .diff-grid {
+  /* feature cards */
+  .feature-grid {
     margin-top: 48px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
-  .diff-card {
+  .feature-card {
     background: var(--panel);
     border: 1px solid var(--panel-line);
     border-radius: 18px;
     padding: 28px 26px;
   }
-  .diff-card .glyph {
+  .feature-card .glyph {
     width: 34px; height: 34px;
     border-radius: 10px;
     background: rgba(245,166,91,0.14);
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 18px;
   }
-  .diff-card .glyph svg { width: 17px; height: 17px; }
-  .diff-card h3 {
+  .feature-card .glyph svg { width: 17px; height: 17px; }
+  .feature-card h3 {
     font-family: var(--sans);
     font-weight: 600;
     font-size: 15.5px;
     margin: 0 0 8px;
     color: #fff;
   }
-  .diff-card p {
+  .feature-card p {
     font-size: 13.5px;
     line-height: 1.6;
     color: var(--ink-dim);
@@ -322,8 +381,6 @@
 
   /* status / cta */
   section.cta {
-    background: linear-gradient(180deg, var(--sky-top) 0%, var(--dawn-1) 100%);
-    border-top: 1px solid var(--panel-line);
     text-align: center;
   }
   .status-pill {
@@ -375,14 +432,15 @@
   footer .flinks a:hover { color: var(--ink); }
 
   @media (max-width: 760px) {
-    .insight-row { grid-template-columns: 1fr; gap: 32px; }
     ol.steps { grid-template-columns: 1fr 1fr; }
-    .diff-grid { grid-template-columns: 1fr; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .story p.body { text-align: left; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .reveal { opacity: 1; transform: none; transition: none; }
+    ol.steps li:hover { transform: none; }
   }
 </style>
 </head>
@@ -400,7 +458,7 @@
     <p class="hero-brand">fresh air</p>
     <span class="eyebrow">Currently in private beta</span>
     <h1 class="headline">A real reason<br><em>to step outside.</em></h1>
-    <p class="sub">Fresh Air finds your best moment to go outside each day — using actual weather, UV, and air quality data, not a guess — then turns it into a one-photo habit worth keeping.</p>
+    <p class="sub">Fresh Air finds your best moment to go outside each day, using actual weather and air quality data instead of a guess, then turns it into a one-photo habit worth keeping.</p>
     <div class="hero-actions">
       <a class="btn-ghost" href="signup.html">Request a demo</a>
       <a class="btn-primary" href="#how">See how it works</a>
@@ -415,7 +473,7 @@
       </svg>
       <div class="arc-label">
         <span>7:00 AM</span>
-        <span style="color:#FFE9CE">Today's best window — 4:10–6:10 PM</span>
+        <span style="color:#FFE9CE">Today's best window: 4:10 to 6:10 PM</span>
         <span>9:00 PM</span>
       </div>
     </div>
@@ -423,15 +481,26 @@
 </header>
 
 <section class="tight">
-  <div class="wrap insight-row">
-    <div class="reveal">
-      <p class="kicker">The problem</p>
-      <h2>You spend most of your day inside.</h2>
-      <p class="lede">Habit trackers remind you to go outside. None of them tell you whether right now is actually a good time — or whether 4pm, when the UV drops and the air clears up, would serve you a lot better.</p>
+  <div class="wrap story reveal">
+    <p class="story-figure">90%</p>
+    <p class="story-figure-label">of our time is spent indoors, according to EPA research on daily activity patterns.</p>
+
+    <p class="body">It happens quietly, one ordinary day at a time, until being inside just starts to feel normal.</p>
+    <p class="body">Fresh Air is built on a simple idea: a few intentional minutes outside can change how you feel. Not a workout. Not another task on your list. Just real air, real sky, and a short break from the walls you've been staring at all day.</p>
+    <p class="body">It's simple. It's honestly healing.</p>
+
+    <p class="slogan">Catch today's sky, wherever you are.</p>
+  </div>
+</section>
+
+<section class="stat-band">
+  <div class="wrap reveal">
+    <div class="icon">
+      <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4.5" stroke="#F5A65B" stroke-width="1.6"/><path d="M10 1v2.5M10 16.5V19M19 10h-2.5M3.5 10H1M16.4 3.6l-1.8 1.8M5.4 14.6l-1.8 1.8M16.4 16.4l-1.8-1.8M5.4 5.4L3.6 3.6" stroke="#F5A65B" stroke-width="1.6" stroke-linecap="round"/></svg>
     </div>
-    <div class="reveal">
-      <p class="insight-quote">Fresh Air doesn't ask for willpower.<br>It just tells you when the sky is worth stepping into.</p>
-    </div>
+    <p>Regular outdoor light exposure has been shown to boost dopamine, lift mood, and improve sleep quality.
+      <span class="source">Findings drawn from research on retinal light exposure, serotonin synthesis, and sleep onset.</span>
+    </p>
   </div>
 </section>
 
@@ -439,24 +508,24 @@
   <div class="wrap reveal">
     <p class="kicker">How it works</p>
     <h2>Four small things, every day.</h2>
-    <p class="lede">No workouts, no goals, no step counts — just a genuine daily habit of being outside, reflected honestly back at you.</p>
+    <p class="lede">No workouts, no goals, no step counts. Just a genuine daily habit of being outside, reflected honestly back at you.</p>
 
     <ol class="steps">
       <li>
-        <h3>Find the window</h3>
-        <p>Temperature, UV, and air quality across the day, scored for actual comfort — not just whichever hour is warmest.</p>
+        <h3>We find your moment</h3>
+        <p>Real weather and air quality, scored across the day for actual comfort, not just whichever hour is warmest.</p>
       </li>
       <li>
         <h3>Step outside</h3>
-        <p>A nudge lands right as your window opens. Two minutes or twenty — Fresh Air isn't keeping score of duration.</p>
+        <p>A nudge arrives right as your window opens. Spend a few intentional minutes outside. No workout required.</p>
       </li>
       <li>
-        <h3>One photo</h3>
-        <p>Sky, clouds, rain — whatever's actually out there. One tap on how you feel, and you're done.</p>
+        <h3>Capture the moment</h3>
+        <p>One photo of the sky, however it looks today. A quick tap on how you're feeling, and you're done.</p>
       </li>
       <li>
-        <h3>Watch it add up</h3>
-        <p>A streak that reflects a real habit — with a freeze you earn, not a guilt trip, on the days that don't go to plan.</p>
+        <h3>Build the habit</h3>
+        <p>Every day adds up into a real streak, with room to miss one without losing everything you've built.</p>
       </li>
     </ol>
   </div>
@@ -464,24 +533,30 @@
 
 <section class="tight">
   <div class="wrap reveal">
-    <p class="kicker">Why it's different</p>
-    <h2>Built around real conditions, not reminders.</h2>
+    <p class="kicker">Along the way</p>
+    <h2>More than a photo a day.</h2>
+    <p class="lede">A few things that make the habit worth sticking with.</p>
 
-    <div class="diff-grid">
-      <div class="diff-card">
-        <div class="glyph"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4.5" stroke="#F5A65B" stroke-width="1.6"/><path d="M10 1v2.5M10 16.5V19M19 10h-2.5M3.5 10H1M16.4 3.6l-1.8 1.8M5.4 14.6l-1.8 1.8M16.4 16.4l-1.8-1.8M5.4 5.4L3.6 3.6" stroke="#F5A65B" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-        <h3>Weather-first, not reminder-first</h3>
-        <p>Every recommendation is scored against live temperature, UV index, and air quality — the same signals a person would actually check before heading out.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="glyph"><svg viewBox="0 0 20 20" fill="none"><circle cx="6.5" cy="7" r="2.6" stroke="#F5A65B" stroke-width="1.5"/><circle cx="14" cy="7.5" r="2" stroke="#F5A65B" stroke-width="1.5"/><path d="M2 16c0-2.9 2-4.7 4.5-4.7S11 13.1 11 16" stroke="#F5A65B" stroke-width="1.5" stroke-linecap="round"/><path d="M12.5 12c2 0 3.8 1.4 3.8 4" stroke="#F5A65B" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <h3>Friends and challenges</h3>
+        <p>Invite a friend, see how their streak is going, or start a low-key challenge together.</p>
       </div>
-      <div class="diff-card">
-        <div class="glyph"><svg viewBox="0 0 20 20" fill="none"><path d="M4 12l3.5-4.5L10 11l3-4L16 11" stroke="#F5A65B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="2.5" y="4" width="15" height="12" rx="2.5" stroke="#F5A65B" stroke-width="1.6"/></svg></div>
-        <h3>One photo, no performance</h3>
-        <p>No filters, no feed, no likes. A single daily photo of the sky is proof enough — for you, not an audience.</p>
+      <div class="feature-card">
+        <div class="glyph"><svg viewBox="0 0 20 20" fill="none"><path d="M10 18s6-5.5 6-10a6 6 0 10-12 0c0 4.5 6 10 6 10z" stroke="#F5A65B" stroke-width="1.5" stroke-linejoin="round"/><circle cx="10" cy="8" r="2" stroke="#F5A65B" stroke-width="1.5"/></svg></div>
+        <h3>Your sky, mapped</h3>
+        <p>Every photo you've taken, pinned to the place you took it. A quiet record of everywhere you've been.</p>
       </div>
-      <div class="diff-card">
+      <div class="feature-card">
+        <div class="glyph"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2.5l1.9 4.3 4.6.5-3.5 3.1 1 4.6L10 12.6l-4 2.4 1-4.6-3.5-3.1 4.6-.5L10 2.5z" stroke="#F5A65B" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+        <h3>Real milestones</h3>
+        <p>Unlock badges for the moments that actually mean something, like a first golden hour or a full week outside.</p>
+      </div>
+      <div class="feature-card">
         <div class="glyph"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2.5C7 6 4.5 9 4.5 12a5.5 5.5 0 0011 0c0-3-2.5-6-5.5-9.5z" stroke="#F5A65B" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
         <h3>A streak that forgives</h3>
-        <p>Every 7-day streak banks a freeze — a real day off, not a broken chain. The habit survives being human.</p>
+        <p>Earn a day off for every stretch you complete. Life happens, and your streak can survive it.</p>
       </div>
     </div>
   </div>
@@ -489,7 +564,7 @@
 
 <section class="cta">
   <div class="wrap reveal">
-    <div class="status-pill"><span class="dot"></span> Private beta — iOS, via Expo</div>
+    <div class="status-pill"><span class="dot"></span> Private beta, iOS, via Expo</div>
     <h2>We're letting people in slowly.</h2>
     <p class="lede">Fresh Air is being built and tested in the open right now. If you'd like early access, or you're an investor who wants to see it running, request a demo below.</p>
     <div class="cta-row">
