@@ -115,17 +115,24 @@
     z-index: 2;
     text-align: center;
   }
+  .hero-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
   .hero-brand {
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    margin: 0 0 26px;
   }
   .hero-brand svg { width: 22px; height: 22px; flex: none; }
   .hero-brand span {
     font-family: var(--serif);
     font-weight: 600;
-    font-size: clamp(24px, 3.2vw, 30px);
+    font-size: clamp(22px, 3vw, 27px);
     letter-spacing: 0.01em;
     color: #fff;
     text-shadow: 0 2px 18px rgba(0,0,0,0.25);
@@ -142,7 +149,6 @@
     backdrop-filter: blur(6px);
     border-radius: 999px;
     padding: 7px 16px 7px 12px;
-    margin-bottom: 28px;
   }
   .eyebrow .dot {
     width: 7px; height: 7px; border-radius: 50%;
@@ -465,11 +471,13 @@
 
 <header class="hero">
   <div class="wrap hero-inner">
-    <div class="hero-brand">
-      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4.5" fill="#FFD79A"/><path d="M10 1.5v2.3M10 16.2v2.3M18.5 10h-2.3M3.8 10H1.5M15.9 4.1l-1.6 1.6M5.7 14.3l-1.6 1.6M15.9 15.9l-1.6-1.6M5.7 5.7L4.1 4.1" stroke="#FFD79A" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span>fresh air</span>
+    <div class="hero-top-row">
+      <div class="hero-brand">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4.5" fill="#FFD79A"/><path d="M10 1.5v2.3M10 16.2v2.3M18.5 10h-2.3M3.8 10H1.5M15.9 4.1l-1.6 1.6M5.7 14.3l-1.6 1.6M15.9 15.9l-1.6-1.6M5.7 5.7L4.1 4.1" stroke="#FFD79A" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span>fresh air</span>
+      </div>
+      <span class="eyebrow"><span class="dot"></span>Currently in private beta</span>
     </div>
-    <span class="eyebrow"><span class="dot"></span>Currently in private beta</span>
     <h1 class="headline">A real reason<br><em>to step outside.</em></h1>
     <p class="sub">Fresh Air finds your best moment to go outside each day, using actual weather and air quality data instead of a guess, then turns it into a one-photo habit worth keeping.</p>
     <div class="hero-actions">
