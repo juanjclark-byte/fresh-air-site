@@ -31,10 +31,12 @@
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    background: var(--sky-top);
     color: var(--ink);
     font-family: var(--sans);
     -webkit-font-smoothing: antialiased;
+    /* One continuous backdrop for the whole page below the hero, so
+       sections never cut between flat, unrelated blocks of color. */
+    background: linear-gradient(180deg, #0D1226 0%, #121A34 28%, #161F42 58%, #1B2650 100%);
   }
 
   ::selection { background: var(--accent); color: var(--accent-ink); }
@@ -85,7 +87,7 @@
     position: relative;
     overflow: hidden;
     background: linear-gradient(180deg, var(--dawn-1) 0%, var(--dawn-2) 34%, var(--dawn-3) 62%, var(--dawn-4) 86%, var(--dawn-5) 100%);
-    padding: 96px 0 140px;
+    padding: 88px 0 128px;
   }
   header.hero::after {
     content: "";
@@ -94,30 +96,55 @@
     background: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(13,18,38,0.35), transparent 65%);
     pointer-events: none;
   }
+  /* Eases the hero's warm gold edge into the cool gradient below instead
+     of cutting hard from bright gold to dark navy. */
+  header.hero::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 160px;
+    background: linear-gradient(180deg, transparent 0%, rgba(13,18,38,0.9) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
   .hero-inner {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     text-align: center;
   }
   .hero-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 26px;
+  }
+  .hero-brand svg { width: 22px; height: 22px; flex: none; }
+  .hero-brand span {
     font-family: var(--serif);
     font-weight: 600;
-    font-size: clamp(22px, 3vw, 28px);
-    letter-spacing: -0.005em;
+    font-size: clamp(24px, 3.2vw, 30px);
+    letter-spacing: 0.01em;
     color: #fff;
-    margin: 0 0 22px;
+    text-shadow: 0 2px 18px rgba(0,0,0,0.25);
   }
   .eyebrow {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-size: 12.5px;
     font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.75);
-    border: 1px solid rgba(255,255,255,0.28);
+    color: #FFEBD1;
+    background: rgba(13,18,38,0.32);
+    border: 1px solid rgba(255,255,255,0.22);
+    backdrop-filter: blur(6px);
     border-radius: 999px;
-    padding: 6px 14px;
+    padding: 7px 16px 7px 12px;
     margin-bottom: 28px;
+  }
+  .eyebrow .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #FFD79A;
+    box-shadow: 0 0 0 3px rgba(255,215,154,0.25);
   }
   h1.headline {
     font-family: var(--serif);
@@ -171,7 +198,7 @@
   /* day-arc motif */
   .arc-wrap {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     margin: 56px auto 0;
     width: min(560px, 88vw);
   }
@@ -187,8 +214,8 @@
   }
 
   /* ---------- sections ---------- */
-  section { padding: 108px 0; }
-  section.tight { padding: 84px 0; }
+  section { padding: 100px 0; position: relative; }
+  section.tight { padding: 80px 0; }
 
   .kicker {
     font-size: 12.5px;
@@ -207,6 +234,9 @@
     margin: 0 0 20px;
     max-width: 640px;
     text-wrap: balance;
+  }
+  h2 .figure {
+    color: var(--accent);
   }
   p.lede {
     font-size: 17px;
@@ -227,76 +257,62 @@
   }
 
   /* ---------- our story ---------- */
-  .story {
+  .story-body {
     max-width: 640px;
-    margin: 0 auto;
-    text-align: center;
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
   }
-  .story-figure {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: clamp(56px, 9vw, 92px);
-    line-height: 1;
-    color: var(--accent);
-    margin: 0 0 6px;
-  }
-  .story-figure-label {
-    font-size: 13.5px;
-    color: var(--ink-dim);
-    margin: 0 0 44px;
-  }
-  .story p.body {
-    font-size: 18px;
+  .story-body p {
+    font-size: 17px;
     line-height: 1.75;
-    color: rgba(255,255,255,0.88);
-    margin: 0 0 22px;
-    text-align: left;
+    color: rgba(255,255,255,0.85);
+    margin: 0;
   }
-  .story p.slogan {
+  p.slogan {
     font-family: var(--serif);
     font-style: italic;
     font-weight: 400;
-    font-size: clamp(20px, 2.6vw, 25px);
+    font-size: clamp(19px, 2.4vw, 23px);
     color: #fff;
     margin: 34px 0 0;
+    max-width: 640px;
   }
 
   /* ---------- stat band ---------- */
-  section.stat-band {
-    background: var(--panel);
-    border-top: 1px solid var(--panel-line);
-    border-bottom: 1px solid var(--panel-line);
-    padding: 56px 0;
-  }
-  .stat-band .wrap {
+  .stat-card {
+    margin-top: 44px;
+    max-width: 640px;
     display: flex;
-    align-items: center;
-    gap: 28px;
-    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 18px;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid var(--panel-line);
+    border-radius: 18px;
+    padding: 22px 24px;
   }
-  .stat-band .icon {
+  .stat-card .icon {
     flex: none;
-    width: 46px; height: 46px;
-    border-radius: 12px;
+    width: 40px; height: 40px;
+    border-radius: 11px;
     background: rgba(245,166,91,0.14);
     display: flex; align-items: center; justify-content: center;
   }
-  .stat-band .icon svg { width: 22px; height: 22px; }
-  .stat-band p {
-    flex: 1;
-    min-width: 240px;
+  .stat-card .icon svg { width: 19px; height: 19px; }
+  .stat-card p {
     font-family: var(--serif);
-    font-size: clamp(18px, 2.4vw, 23px);
-    line-height: 1.4;
+    font-size: 16.5px;
+    line-height: 1.5;
     color: #fff;
     margin: 0;
   }
-  .stat-band .source {
+  .stat-card .source {
     display: block;
     font-family: var(--sans);
     font-size: 12px;
     color: var(--ink-dim);
-    margin-top: 6px;
+    margin-top: 7px;
   }
 
   /* steps */
@@ -311,7 +327,7 @@
   }
   ol.steps li {
     counter-increment: step;
-    background: var(--panel);
+    background: rgba(255,255,255,0.045);
     border: 1px solid var(--panel-line);
     border-radius: 18px;
     padding: 28px 22px 30px;
@@ -348,14 +364,14 @@
   .feature-grid {
     margin-top: 48px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
   .feature-card {
-    background: var(--panel);
+    background: rgba(255,255,255,0.045);
     border: 1px solid var(--panel-line);
     border-radius: 18px;
-    padding: 28px 26px;
+    padding: 26px 24px;
   }
   .feature-card .glyph {
     width: 34px; height: 34px;
@@ -368,12 +384,12 @@
   .feature-card h3 {
     font-family: var(--sans);
     font-weight: 600;
-    font-size: 15.5px;
+    font-size: 15px;
     margin: 0 0 8px;
     color: #fff;
   }
   .feature-card p {
-    font-size: 13.5px;
+    font-size: 13px;
     line-height: 1.6;
     color: var(--ink-dim);
     margin: 0;
@@ -431,10 +447,12 @@
   footer .flinks a { text-decoration: none; }
   footer .flinks a:hover { color: var(--ink); }
 
+  @media (max-width: 900px) {
+    .feature-grid { grid-template-columns: 1fr 1fr; }
+  }
   @media (max-width: 760px) {
     ol.steps { grid-template-columns: 1fr 1fr; }
     .feature-grid { grid-template-columns: 1fr; }
-    .story p.body { text-align: left; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -455,8 +473,11 @@
 
 <header class="hero">
   <div class="wrap hero-inner">
-    <p class="hero-brand">fresh air</p>
-    <span class="eyebrow">Currently in private beta</span>
+    <div class="hero-brand">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4.5" fill="#FFD79A"/><path d="M10 1.5v2.3M10 16.2v2.3M18.5 10h-2.3M3.8 10H1.5M15.9 4.1l-1.6 1.6M5.7 14.3l-1.6 1.6M15.9 15.9l-1.6-1.6M5.7 5.7L4.1 4.1" stroke="#FFD79A" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <span>fresh air</span>
+    </div>
+    <span class="eyebrow"><span class="dot"></span>Currently in private beta</span>
     <h1 class="headline">A real reason<br><em>to step outside.</em></h1>
     <p class="sub">Fresh Air finds your best moment to go outside each day, using actual weather and air quality data instead of a guess, then turns it into a one-photo habit worth keeping.</p>
     <div class="hero-actions">
@@ -481,26 +502,26 @@
 </header>
 
 <section class="tight">
-  <div class="wrap story reveal">
-    <p class="story-figure">90%</p>
-    <p class="story-figure-label">of our time is spent indoors, according to EPA research on daily activity patterns.</p>
+  <div class="wrap reveal">
+    <p class="kicker">Our story</p>
+    <h2><span class="figure">90%</span> of our time is spent indoors.</h2>
+    <p class="lede">It happens quietly, one ordinary day at a time, until being inside just starts to feel normal.</p>
 
-    <p class="body">It happens quietly, one ordinary day at a time, until being inside just starts to feel normal.</p>
-    <p class="body">Fresh Air is built on a simple idea: a few intentional minutes outside can change how you feel. Not a workout. Not another task on your list. Just real air, real sky, and a short break from the walls you've been staring at all day.</p>
-    <p class="body">It's simple. It's honestly healing.</p>
+    <div class="story-body">
+      <p>Fresh Air is built on a simple idea: a few intentional minutes outside can change how you feel. Not a workout. Not another task on your list. Just real air, real sky, and a short break from the walls you've been staring at all day.</p>
+      <p>It's simple. It's honestly healing.</p>
+    </div>
 
     <p class="slogan">Catch today's sky, wherever you are.</p>
-  </div>
-</section>
 
-<section class="stat-band">
-  <div class="wrap reveal">
-    <div class="icon">
-      <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4.5" stroke="#F5A65B" stroke-width="1.6"/><path d="M10 1v2.5M10 16.5V19M19 10h-2.5M3.5 10H1M16.4 3.6l-1.8 1.8M5.4 14.6l-1.8 1.8M16.4 16.4l-1.8-1.8M5.4 5.4L3.6 3.6" stroke="#F5A65B" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <div class="stat-card">
+      <div class="icon">
+        <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4.5" stroke="#F5A65B" stroke-width="1.6"/><path d="M10 1v2.5M10 16.5V19M19 10h-2.5M3.5 10H1M16.4 3.6l-1.8 1.8M5.4 14.6l-1.8 1.8M16.4 16.4l-1.8-1.8M5.4 5.4L3.6 3.6" stroke="#F5A65B" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </div>
+      <p>Regular outdoor light exposure has been shown to boost dopamine, lift mood, and improve sleep quality.
+        <span class="source">Drawn from research on retinal light exposure, serotonin synthesis, and sleep onset.</span>
+      </p>
     </div>
-    <p>Regular outdoor light exposure has been shown to boost dopamine, lift mood, and improve sleep quality.
-      <span class="source">Findings drawn from research on retinal light exposure, serotonin synthesis, and sleep onset.</span>
-    </p>
   </div>
 </section>
 
@@ -551,12 +572,22 @@
       <div class="feature-card">
         <div class="glyph"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2.5l1.9 4.3 4.6.5-3.5 3.1 1 4.6L10 12.6l-4 2.4 1-4.6-3.5-3.1 4.6-.5L10 2.5z" stroke="#F5A65B" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
         <h3>Real milestones</h3>
-        <p>Unlock badges for the moments that actually mean something, like a first golden hour or a full week outside.</p>
+        <p>Unlock badges for moments that actually mean something, like a first golden hour or a full week outside.</p>
       </div>
       <div class="feature-card">
         <div class="glyph"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2.5C7 6 4.5 9 4.5 12a5.5 5.5 0 0011 0c0-3-2.5-6-5.5-9.5z" stroke="#F5A65B" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
         <h3>A streak that forgives</h3>
         <p>Earn a day off for every stretch you complete. Life happens, and your streak can survive it.</p>
+      </div>
+      <div class="feature-card">
+        <div class="glyph"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.2" stroke="#F5A65B" stroke-width="1.5"/><path d="M10 6v4l3 2" stroke="#F5A65B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Outside timer</h3>
+        <p>Simple presets for intentional time outside, from a quick one-minute breather to a full hour.</p>
+      </div>
+      <div class="feature-card">
+        <div class="glyph"><svg viewBox="0 0 20 20" fill="none"><path d="M4 11c0-3.9 2.7-7 6-7s6 3.1 6 7-2.7 6-6 6-6-2.1-6-6z" stroke="#F5A65B" stroke-width="1.5"/><path d="M7.5 10.5s1 1.2 2.5 1.2 2.5-1.2 2.5-1.2" stroke="#F5A65B" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <h3>Mood check-ins</h3>
+        <p>One tap on how you're feeling each day, folded into a warm weekly recap of your mood over time.</p>
       </div>
     </div>
   </div>
