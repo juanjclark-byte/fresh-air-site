@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Fresh Air: a real reason to go outside</title>
-<meta name="description" content="Fresh Air finds your best moment to step outside each day, using real weather and air quality data, then makes it a one-photo habit worth keeping." />
+<title>Fresh Air</title>
+<meta name="description" content="Fresh Air finds your best moment to step outside each day, using real weather and air quality data, then makes it a simple daily photo habit worth keeping." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -34,12 +34,14 @@
     color: var(--ink);
     font-family: var(--sans);
     -webkit-font-smoothing: antialiased;
-    /* One continuous backdrop for the whole page below the hero, so
-       sections never cut between flat, unrelated blocks of color.
-       Same construction as the hero's gradient (a smooth multi-stop
-       linear-gradient), staying inside the same dark navy family
-       instead of drifting toward a visibly different blue. */
-    background: linear-gradient(180deg, #0D1226 0%, #0F1530 32%, #121937 64%, #141C3C 100%);
+    background: #03040A;
+  }
+
+  /* Everything below the hero sits on the app's Midnight theme gradient
+     (same five stops as GRADIENT_THEMES 'midnight'): near black at the
+     top, easing up to a deep slate by the footer. */
+  .night {
+    background: linear-gradient(180deg, #03040A 0%, #080C1C 34%, #0F1730 62%, #182047 86%, #222C56 100%);
   }
 
   ::selection { background: var(--accent); color: var(--accent-ink); }
@@ -90,7 +92,7 @@
     position: relative;
     overflow: hidden;
     background: linear-gradient(180deg, var(--dawn-1) 0%, var(--dawn-2) 34%, var(--dawn-3) 62%, var(--dawn-4) 86%, var(--dawn-5) 100%);
-    padding: 88px 0 128px;
+    padding: 80px 0 104px;
   }
   header.hero::after {
     content: "";
@@ -106,7 +108,7 @@
     position: absolute;
     left: 0; right: 0; bottom: 0;
     height: 160px;
-    background: linear-gradient(180deg, transparent 0%, rgba(13,18,38,0.9) 100%);
+    background: linear-gradient(180deg, transparent 0%, #03040A 100%);
     pointer-events: none;
     z-index: 1;
   }
@@ -208,7 +210,7 @@
   .arc-wrap {
     position: relative;
     z-index: 2;
-    margin: 56px auto 0;
+    margin: 44px auto 0;
     width: min(560px, 88vw);
   }
   .arc-wrap svg { display: block; width: 100%; height: auto; }
@@ -223,8 +225,19 @@
   }
 
   /* ---------- sections ---------- */
-  section { padding: 100px 0; position: relative; }
-  section.tight { padding: 80px 0; }
+  section { padding: 68px 0; position: relative; }
+  section.tight { padding: 52px 0; }
+
+  /* Story section: centered copy. */
+  section.story { text-align: center; }
+  section.story h2,
+  section.story .lede,
+  section.story .story-body,
+  section.story .slogan {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  section.story .story-body { align-items: center; }
 
   .kicker {
     font-size: 12.5px;
@@ -258,10 +271,10 @@
   /* ---------- our story ---------- */
   .story-body {
     max-width: 640px;
-    margin-top: 28px;
+    margin-top: 22px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
   }
   .story-body p {
     font-size: 17px;
@@ -275,14 +288,20 @@
     font-weight: 400;
     font-size: clamp(19px, 2.4vw, 23px);
     color: #fff;
-    margin: 34px 0 0;
+    margin: 26px 0 0;
     max-width: 640px;
   }
 
   /* ---------- stat band ---------- */
-  .stat-card {
-    margin-top: 44px;
+  .stat-cards {
     max-width: 640px;
+    margin: 30px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+  }
+  .stat-card {
     display: flex;
     align-items: flex-start;
     gap: 18px;
@@ -318,7 +337,7 @@
   ol.steps {
     list-style: none;
     counter-reset: step;
-    margin: 48px 0 0;
+    margin: 36px 0 0;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -361,7 +380,7 @@
 
   /* feature cards */
   .feature-grid {
-    margin-top: 48px;
+    margin-top: 36px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -465,7 +484,7 @@
 <nav class="top">
   <div class="wrap">
     <span class="wordmark">fresh air</span>
-    <a class="nav-cta" href="signup.html">Request a demo</a>
+    <a class="nav-cta" href="signup.html">Request Early Access</a>
   </div>
 </nav>
 
@@ -476,12 +495,12 @@
         <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4.5" fill="#FFD79A"/><path d="M10 1.5v2.3M10 16.2v2.3M18.5 10h-2.3M3.8 10H1.5M15.9 4.1l-1.6 1.6M5.7 14.3l-1.6 1.6M15.9 15.9l-1.6-1.6M5.7 5.7L4.1 4.1" stroke="#FFD79A" stroke-width="1.4" stroke-linecap="round"/></svg>
         <span>fresh air</span>
       </div>
-      <span class="eyebrow"><span class="dot"></span>Currently in private beta</span>
+      <span class="eyebrow"><span class="dot"></span>Currently in early access</span>
     </div>
-    <h1 class="headline">A real reason<br><em>to step outside.</em></h1>
-    <p class="sub">Fresh Air finds your prime moment to go outside each day, using actual weather and air quality data instead of a guess, then turns it into a one-photo habit worth keeping!</p>
+    <h1 class="headline">Step outside.<br><em>Feel different.</em></h1>
+    <p class="sub">Fresh Air finds your prime moment to go outside each day, using actual weather and air quality data instead of a guess, then turns it into a simple photo habit worth keeping.</p>
     <div class="hero-actions">
-      <a class="btn-ghost" href="signup.html">Request a demo</a>
+      <a class="btn-ghost" href="signup.html">Request Early Access</a>
       <a class="btn-primary" href="#how">See how it works</a>
     </div>
 
@@ -501,26 +520,54 @@
   </div>
 </header>
 
-<section class="tight">
+<div class="night">
+
+<section class="tight story">
   <div class="wrap">
     <p class="kicker">Our story</p>
     <h2><span class="figure">90%</span> of our time is spent indoors.</h2>
-    <p class="lede">It happens quietly, one ordinary day at a time, until being inside just starts to feel normal.</p>
+    <p class="lede">Fresh Air finds your prime moment to go outside each day, letting you capture it with a photo and build a habit worth keeping, until it starts to feel like the normal.</p>
 
     <div class="story-body">
-      <p>Fresh Air is built on a simple idea: a few intentional minutes outside can improve your state of mind. Not a workout. Not another task on your list. Just real air, real sky, and a short break from the walls you've been staring at all day.</p>
+      <p>Fresh Air is built on a simple idea: a few intentional minutes outside every day can shift how you feel. Not a workout. Not another task on your list. Just real air, real sky, and a short break from the walls you've been staring at all day.</p>
       <p>It's simple. It's healing.</p>
     </div>
 
     <p class="slogan">Catch today's sky, wherever you are.</p>
 
-    <div class="stat-card">
-      <div class="icon">
-        <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4.5" stroke="#F5A65B" stroke-width="1.6"/><path d="M10 1v2.5M10 16.5V19M19 10h-2.5M3.5 10H1M16.4 3.6l-1.8 1.8M5.4 14.6l-1.8 1.8M16.4 16.4l-1.8-1.8M5.4 5.4L3.6 3.6" stroke="#F5A65B" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="icon">
+          <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4.5" stroke="#F5A65B" stroke-width="1.6"/><path d="M10 1v2.5M10 16.5V19M19 10h-2.5M3.5 10H1M16.4 3.6l-1.8 1.8M5.4 14.6l-1.8 1.8M16.4 16.4l-1.8-1.8M5.4 5.4L3.6 3.6" stroke="#F5A65B" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <p>Regular outdoor light exposure has been shown to boost dopamine, lift mood, and improve sleep quality.
+          <span class="source">Drawn from research on retinal light exposure, serotonin synthesis, and sleep onset.</span>
+        </p>
       </div>
-      <p>Regular outdoor light exposure has been shown to boost dopamine, lift mood, and improve sleep quality.
-        <span class="source">Drawn from research on retinal light exposure, serotonin synthesis, and sleep onset.</span>
-      </p>
+      <div class="stat-card">
+        <div class="icon">
+          <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.2" stroke="#F5A65B" stroke-width="1.6"/><path d="M10 6v4l3 2" stroke="#F5A65B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p>2 hours outside. 7 days to get there.
+          <span class="source">Research suggests 120 minutes in nature each week is associated with better health and wellbeing.</span>
+        </p>
+      </div>
+      <div class="stat-card">
+        <div class="icon">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M16 4c0 7-4 12-11 12 0-7 4-12 11-12z" stroke="#F5A65B" stroke-width="1.5" stroke-linejoin="round"/><path d="M5 16c3-4 6-7 10-9" stroke="#F5A65B" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <p>20 minutes can make a difference.
+          <span class="source">Research shows that just 20 to 30 minutes in nature can significantly reduce physiological markers of stress.</span>
+        </p>
+      </div>
+      <div class="stat-card">
+        <div class="icon">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M3 15h14" stroke="#F5A65B" stroke-width="1.6" stroke-linecap="round"/><path d="M6.5 15a3.5 3.5 0 017 0" stroke="#F5A65B" stroke-width="1.6" stroke-linecap="round"/><path d="M10 3v3M4.4 6.4l1.7 1.7M15.6 6.4l-1.7 1.7M2 11h2M16 11h2" stroke="#F5A65B" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <p>More daylight, better days.
+          <span class="source">A 2025 study of 13,000+ adults found that greater daylight exposure was associated with fewer depressive and insomnia symptoms.</span>
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -528,8 +575,8 @@
 <section id="how">
   <div class="wrap">
     <p class="kicker">How it works</p>
-    <h2>One shot, every day.</h2>
-    <p class="lede">No workouts, no equipment, no step counts. Just a genuine daily habit of being outside, reflected honestly back at you.</p>
+    <h2>One snap, every day</h2>
+    <p class="lede">No forced workouts, equipment, or step counts. Just a genuine daily habit of being outside, and showing up for yourself every day.</p>
 
     <ol class="steps">
       <li>
@@ -555,14 +602,14 @@
 <section class="tight">
   <div class="wrap">
     <p class="kicker">Along the way</p>
-    <h2>More than a photo a day.</h2>
-    <p class="lede">A few things that make the habit worth sticking with.</p>
+    <h2>It's more than just a photo a day</h2>
+    <p class="lede">A few features that make the habit worth sticking with.</p>
 
     <div class="feature-grid">
       <div class="feature-card">
         <div class="glyph"><svg viewBox="0 0 20 20" fill="none"><circle cx="6.5" cy="7" r="2.6" stroke="#F5A65B" stroke-width="1.5"/><circle cx="14" cy="7.5" r="2" stroke="#F5A65B" stroke-width="1.5"/><path d="M2 16c0-2.9 2-4.7 4.5-4.7S11 13.1 11 16" stroke="#F5A65B" stroke-width="1.5" stroke-linecap="round"/><path d="M12.5 12c2 0 3.8 1.4 3.8 4" stroke="#F5A65B" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <h3>Friends and challenges</h3>
-        <p>Invite a friend, see how their streak is going, or start a low-key challenge together.</p>
+        <p>Invite a friend, see how their streak is going, or start a casual challenge together.</p>
       </div>
       <div class="feature-card">
         <div class="glyph"><svg viewBox="0 0 20 20" fill="none"><path d="M10 18s6-5.5 6-10a6 6 0 10-12 0c0 4.5 6 10 6 10z" stroke="#F5A65B" stroke-width="1.5" stroke-linejoin="round"/><circle cx="10" cy="8" r="2" stroke="#F5A65B" stroke-width="1.5"/></svg></div>
@@ -582,11 +629,11 @@
       <div class="feature-card">
         <div class="glyph"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.2" stroke="#F5A65B" stroke-width="1.5"/><path d="M10 6v4l3 2" stroke="#F5A65B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <h3>Outside timer</h3>
-        <p>Simple presets for intentional time outside, from a quick one-minute breather to a full hour.</p>
+        <p>Simple presets for intentional time outside, from one minute to a full hour.</p>
       </div>
       <div class="feature-card">
         <div class="glyph"><svg viewBox="0 0 20 20" fill="none"><path d="M4 11c0-3.9 2.7-7 6-7s6 3.1 6 7-2.7 6-6 6-6-2.1-6-6z" stroke="#F5A65B" stroke-width="1.5"/><path d="M7.5 10.5s1 1.2 2.5 1.2 2.5-1.2 2.5-1.2" stroke="#F5A65B" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        <h3>Mood check-ins</h3>
+        <h3>Daily mood check</h3>
         <p>One tap on how you're feeling each day, folded into a warm weekly recap of your mood over time.</p>
       </div>
     </div>
@@ -595,11 +642,11 @@
 
 <section class="cta">
   <div class="wrap">
-    <div class="status-pill"><span class="dot"></span> Private beta, iOS, via Expo</div>
+    <div class="status-pill"><span class="dot"></span> Early access, iOS, via Expo</div>
     <h2>We're letting people in slowly.</h2>
-    <p class="lede">Fresh Air is being built and tested in the open right now. If you'd like early access, or you're an investor who wants to see it running, request a demo below.</p>
+    <p class="lede">Fresh Air is currently in early testing with a small group of real users. If you'd like early access, request it below.</p>
     <div class="cta-row">
-      <a class="btn-primary" style="background:var(--accent); color:var(--accent-ink); border-color:transparent;" href="signup.html">Request a demo</a>
+      <a class="btn-primary" style="background:var(--accent); color:var(--accent-ink); border-color:transparent;" href="signup.html">Request Early Access</a>
     </div>
   </div>
 </section>
@@ -608,11 +655,13 @@
   <div class="wrap">
     <span class="fmark">fresh air</span>
     <div class="flinks">
-      <a href="signup.html">Request a demo</a>
+      <a href="signup.html">Request Early Access</a>
       <span style="color:var(--ink-faint)">© <span id="year"></span> Fresh Air</span>
     </div>
   </div>
 </footer>
+
+</div>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
