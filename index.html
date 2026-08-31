@@ -41,8 +41,21 @@
      (same five stops as GRADIENT_THEMES 'midnight'): near black at the
      top, easing up to a deep slate by the footer. */
   .night {
+    position: relative;
     background: linear-gradient(180deg, #03040A 0%, #080C1C 34%, #0F1730 62%, #182047 86%, #222C56 100%);
   }
+  /* Scrim: darkens the lighter slate at the foot of the gradient so the
+     footer's dim text and the CTA keep their contrast. */
+  .night::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 240px;
+    background: linear-gradient(180deg, transparent, rgba(3,4,10,0.45));
+    pointer-events: none;
+    z-index: 0;
+  }
+  .night > * { position: relative; z-index: 1; }
 
   ::selection { background: var(--accent); color: var(--accent-ink); }
 
@@ -470,6 +483,13 @@
   }
   @media (max-width: 760px) {
     ol.steps { grid-template-columns: 1fr 1fr; }
+    /* Keep two columns on phones so the six features read as 3 rows of 2,
+       like the desktop layout, instead of one long stack. */
+    .feature-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .feature-card { padding: 20px 16px; }
+    .feature-card .glyph { margin-bottom: 14px; }
+  }
+  @media (max-width: 380px) {
     .feature-grid { grid-template-columns: 1fr; }
   }
 

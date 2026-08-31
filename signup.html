@@ -178,7 +178,7 @@
 
     <div id="form-state" class="form-state">
       <h1>Request Early Access</h1>
-      <p class="lede">Tell us who you are and we'll follow up about early access.</p>
+      <p class="lede">Tell us who you are and we'll text you the link as soon as you're in.</p>
 
       <p class="error" id="error"></p>
 
@@ -196,6 +196,10 @@
         <div class="field">
           <label for="email">Email</label>
           <input type="email" id="email" name="email" placeholder="jordan@example.com" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" placeholder="(555) 123 4567" required autocomplete="tel" inputmode="tel" />
         </div>
 
         <div class="hp" aria-hidden="true">
@@ -248,9 +252,10 @@
     var first = document.getElementById('first').value.trim();
     var last = document.getElementById('last').value.trim();
     var email = document.getElementById('email').value.trim();
+    var phone = document.getElementById('phone').value.trim();
 
-    if (!first || !last || !email) {
-      showError('Fill in all three fields.');
+    if (!first || !last || !email || !phone) {
+      showError('Fill in every field.');
       return;
     }
 
@@ -265,7 +270,7 @@
         'Content-Type': 'application/json',
         'Prefer': 'return=minimal'
       },
-      body: JSON.stringify({ first_name: first, last_name: last, email: email })
+      body: JSON.stringify({ first_name: first, last_name: last, email: email, phone: phone })
     })
       .then(function (res) {
         if (!res.ok) throw new Error('Request failed');
