@@ -98,15 +98,29 @@
     color: rgba(255,255,255,0.7);
     margin-bottom: 7px;
   }
-  input[type="text"], input[type="email"] {
+  input[type="text"], input[type="email"], input[type="tel"] {
     width: 100%;
     font-family: var(--sans);
-    font-size: 15px;
+    /* 16px, not 15px: iOS Safari auto-zooms the page on focus for any
+       input under 16px, which reads as the form "jumping". */
+    font-size: 16px;
     color: #fff;
     background: rgba(255,255,255,0.10);
     border: 1px solid rgba(255,255,255,0.22);
     border-radius: 12px;
     padding: 12px 14px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  /* Safari's autofill styling otherwise forces a light background and dark
+     text into these fields (very visible on phone, which autofills from
+     the QuickType contact bar), breaking the dark theme. */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff;
+    -webkit-box-shadow: 0 0 0 1000px rgba(30,36,64,0.9) inset;
+    transition: background-color 9999s ease-in-out 0s;
   }
   input::placeholder { color: rgba(255,255,255,0.35); }
   input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
